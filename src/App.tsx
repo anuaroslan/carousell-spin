@@ -1,7 +1,15 @@
 import React, { useState } from "react";
 import "./App.css";
 import { Wheel } from "react-custom-roulette";
-import { Button, Center, Container, Group, Modal } from "@mantine/core";
+import {
+  Box,
+  Button,
+  Center,
+  Container,
+  Group,
+  Modal,
+  Text,
+} from "@mantine/core";
 
 const data = [
   {
@@ -25,7 +33,7 @@ const data = [
     style: { backgroundColor: "green", textColor: "black" },
   },
   {
-    option: "Better luck next time :(!",
+    option: "Better luck next time :(",
     style: { backgroundColor: "pink", textColor: "black" },
   },
   {
@@ -38,7 +46,7 @@ function App() {
   const [mustSpin, setMustSpin] = useState(false);
   const [prizeNumber, setPrizeNumber] = useState(0);
   const [prizeModalOpen, setPrizeModalOpen] = useState(false);
-  const [prizeText, setPrizeText] = useState("Try again");
+  const [prizeText, setPrizeText] = useState("");
   const [buttonDisabled, setButtonDisabled] = useState(false);
 
   const handleSpinClick = () => {
@@ -77,19 +85,22 @@ function App() {
           fontSize={12}
           onStopSpinning={handleStopSpin}
         />
-        <Group position="center" mt={20}>
-          <Button onClick={handleSpinClick} disabled={buttonDisabled}>
-            Spin
-          </Button>
+        <Group position="center" direction="column" mt={20}>
+          <Button onClick={handleSpinClick}>Spin</Button>
+          <Box>
+            <Text color="white" size="xl" weight={500}>
+              {prizeText}
+            </Text>
+          </Box>
         </Group>
       </Container>
-      <Modal
+      {/* <Modal
         opened={prizeModalOpen}
         onClose={() => setPrizeModalOpen(false)}
         title="Result"
       >
         <Center>{prizeText}</Center>
-      </Modal>
+      </Modal> */}
     </>
   );
 }
