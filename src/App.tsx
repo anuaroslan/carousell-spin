@@ -86,7 +86,9 @@ function App() {
           onStopSpinning={handleStopSpin}
         />
         <Group position="center" direction="column" mt={20}>
-          <Button onClick={handleSpinClick}>Spin</Button>
+          <Button onClick={handleSpinClick} disabled={buttonDisabled}>
+            Spin
+          </Button>
           <Box>
             <Text color="white" size="xl" weight={500}>
               {prizeText}
