@@ -39,6 +39,7 @@ function App() {
   const [prizeNumber, setPrizeNumber] = useState(0);
   const [prizeModalOpen, setPrizeModalOpen] = useState(false);
   const [prizeText, setPrizeText] = useState("Try again");
+  const [buttonDisabled, setButtonDisabled] = useState(false);
 
   const handleSpinClick = () => {
     const newPrizeNumber = Math.floor(Math.random() * data.length);
@@ -61,6 +62,7 @@ function App() {
   const handleStopSpin = () => {
     handlePrizeText();
     setPrizeModalOpen(true);
+    setButtonDisabled(true);
   };
 
   return (
@@ -76,13 +78,15 @@ function App() {
           onStopSpinning={handleStopSpin}
         />
         <Group position="center" mt={20}>
-          <Button onClick={handleSpinClick}>Spin</Button>
+          <Button onClick={handleSpinClick} disabled={buttonDisabled}>
+            Spin
+          </Button>
         </Group>
       </Container>
       <Modal
         opened={prizeModalOpen}
         onClose={() => setPrizeModalOpen(false)}
-        title="Prize modal"
+        title="Result"
       >
         <Center>{prizeText}</Center>
       </Modal>
